@@ -10,9 +10,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoriasController : ControllerBase
+    public class CategoriasController : BaseController
     {
         private readonly IGenericRepository<Categoria> _categoriaService;
 

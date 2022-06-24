@@ -9,12 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Dto;
+using WebApi.Error;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductosController : ControllerBase
+    public class ProductosController : BaseController
     {
         private readonly IGenericRepository<Producto> _productoService;
         private readonly IMapper _mapper;
@@ -37,6 +36,12 @@ namespace WebApi.Controllers
         {
             var spec = new ProductoWithCategoriaAndMarcaSpecification(id);
             var producto = await _productoService.GetByIdWithSpec(spec);
+
+            if(producto is null)
+            {
+                return BadRequest(new CodeErrorMessage(404));
+            }
+
             return Ok(_mapper.Map<ProductoDto>(producto));
         }
 

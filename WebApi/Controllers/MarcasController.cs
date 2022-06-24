@@ -10,9 +10,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class MarcasController : ControllerBase
+    public class MarcasController : BaseController
     {
         private readonly IGenericRepository<Marca> _marcaService;
 
