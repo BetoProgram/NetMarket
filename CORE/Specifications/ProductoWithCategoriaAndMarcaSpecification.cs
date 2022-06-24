@@ -13,6 +13,7 @@ namespace CORE.Specifications
         {
             AddIncludes(p => p.Categoria);
             AddIncludes(p => p.Marca);
+            AddOrderByAsc(p => p.Nombre);
         }
         public ProductoWithCategoriaAndMarcaSpecification(int id): base(x => x.Id == id) {
             AddIncludes(p => p.Categoria);

@@ -18,6 +18,16 @@ namespace BUSSINESLOGIC.Data
                 inputQuery = inputQuery.Where(spec.Criteria);
             }
 
+            if(spec.OrderByAsc is not null)
+            {
+                inputQuery = inputQuery.OrderBy(spec.OrderByAsc);
+            }
+
+            if (spec.OrderByDesc is not null)
+            {
+                inputQuery = inputQuery.OrderByDescending(spec.OrderByDesc);
+            }
+
             inputQuery = spec.Includes.Aggregate(inputQuery, (c, include) => c.Include(include));
 
             return inputQuery;
